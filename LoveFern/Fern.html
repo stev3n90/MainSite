@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <title>LoveFern</title>
+       <link rel="web icon" type="png"
+       href="images/F1.jpg">
+    <style>
+
+       body {
+              display: flex; /* เปิดใช้งาน Flexbox */
+              flex-direction: column; /* จัดเรียงองค์ประกอบในแนวตั้ง */
+              min-height: 100vh; /* ทำให้ body มีความสูงอย่างน้อยเท่ากับความสูงของ viewport */
+              margin: 0;
+              font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+              color: #333;
+              position: relative;
+              overflow: hidden; /* ซ่อนส่วนของรูปภาพที่เกินขอบจอ */
+       }
+
+        /* 2. Table: เต็มพื้นที่ */
+        table {
+            width: 100%;
+            height: 100%;
+            border-collapse: collapse;
+            table-layout: fixed;
+            position: absolute;
+        }
+        
+        /* 3. ช่องตาราง (td): ไม่มีเส้นแบ่ง, ไม่มี Padding, แบ่งพื้นที่เท่ากัน */
+        table, th, td {
+            border: none; 
+            padding: 0; 
+            text-align: center;
+            /* สำคัญ: กำหนดให้ทุกองค์ประกอบภายใน td จัดอยู่ด้านบนเพื่อลดช่องว่างแนวตั้งที่เกิดจากการจัดกลาง */
+            vertical-align: top; 
+            height: calc(100vh / 3); 
+            width: calc(100vw / 6);  
+            line-height: 0; /* แก้ไขช่องว่างใต้รูปภาพ */
+        }
+        
+        /* 4. กลุ่มรูปภาพ: ใช้ Flexbox, ลบระยะห่าง (Gap) */
+        .image-group {
+            display: flex; 
+            justify-content: space-between; 
+            width: 100%;
+            height: 100%; /* **สำคัญ: ให้ div นี้สูงเต็ม td** */
+            gap: 0; 
+            /* ลบ align-items: center; ออก เพื่อไม่ให้เกิดช่องว่างจากการจัดกึ่งกลาง */
+        }
+
+        /* 5. รูปภาพ: กำหนดขนาดให้รวมกัน 100% พอดี และเต็มความสูงของ div */
+        .image-group img {
+            width: 100%; 
+            height: 100%; /* **สำคัญ: กำหนดความสูง 100% ของ image-group** */
+            object-fit: cover; 
+            display: block; 
+        }
+        footer {
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.5); 
+            color: white;
+            padding: 0px;
+            text-align: center;
+            z-index: 5; 
+            font-weight: 500;
+            
+        }
+
+        .footer-ig {
+            color: inherit; /* 👈 ทำให้สีลิงก์เป็นสีเดียวกับองค์ประกอบแม่ (footer, ซึ่งคือ white) */
+            text-decoration: none; /* 👈 ลบเส้นใต้ */
+            transition: color 0.3s; /* เพิ่ม transition เพื่อให้ดูสวยงามขึ้น */
+        }
+
+        .footer-ig-img{
+              width: 50px;              
+              height: 50px;
+              background-color: aliceblue;
+              
+        }
+
+    </style>
+</head>
+<body>
+
+    <table>
+        <tr>
+            <td><div class="image-group"><img src="images/F1.jpg" alt="F">
+            <td><div class="image-group"><img src="images/F2.png" alt="F">
+            <td><div class="image-group"><img src="images/F3.png" alt="F">
+            <td><div class="image-group"><img src="images/F1.jpg" alt="F">
+            <td><div class="image-group"><img src="images/F2.png" alt="F">
+            <td><div class="image-group"><img src="images/F3.png" alt="F">
+        </tr>
+        <tr>
+            <td><div class="image-group"><img src="images/F3.png" alt="F">
+            <td><div class="image-group"><img src="images/F1.jpg" alt="F">
+            <td><div class="image-group"><img src="images/F2.png" alt="F">
+            <td><div class="image-group"><img src="images/F3.png" alt="F">
+            <td><div class="image-group"><img src="images/F1.jpg" alt="F">
+            <td><div class="image-group"><img src="images/F2.png" alt="F">
+        </tr>
+        <tr>
+            <td><div class="image-group"><img src="images/F2.png" alt="F">
+            <td><div class="image-group"><img src="images/F3.png" alt="F">
+            <td><div class="image-group"><img src="images/F1.jpg" alt="F">
+            <td><div class="image-group"><img src="images/F2.png" alt="F">
+            <td><div class="image-group"><img src="images/F3.png" alt="F">
+            <td><div class="image-group"><img src="images/F1.jpg" alt="F">
+        </tr>
+    </table>
+    <footer>
+              <div class="Icon-ig">
+                     <a class="footer-ig" href="https://www.instagram.com/stev3n_90/">
+                     <img class="footer-ig-img" src="images/Ig.png" alt=""></a>
+              </div>
+              
+            <p class="footer-title">This Page Make By Steven. <br>
+                <a class="footer-ig" href="https://www.instagram.com/stev3n_90/"> --> IG : Stev3n_90 <-- </a>
+            </p>
+            
+    </footer>
+</body>
+</html>

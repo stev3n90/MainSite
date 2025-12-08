@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FERN</title>
+    <link rel="web icon" type="png"
+    href="images/F2.png">
+    <style>
+        /* ------------------------------------------- */
+        /* CSS สำหรับพื้นหลังเคลื่อนไหว (Background Animation) */
+        /* ------------------------------------------- */
+        
+        /* Keyframes สำหรับการเลื่อนพื้นหลังไปทางขวา */
+        @keyframes scroll-bg-right {
+            from {
+                background-position-x: 0;
+            }
+            to {
+                /* **FIXED:** ต้องเลื่อนเท่ากับขนาดรูปภาพที่กำหนดไว้ใน background-size (800px) */
+                background-position-x: 800px; 
+            }
+        }
+        
+/* ... (CSS ส่วนอื่น ๆ เช่น container, h1, button คงเดิม) ... */
+
+    /* Keyframes สำหรับเลื่อนองค์ประกอบ <img> */
+    @keyframes scroll-bg-right {
+        /*
+         * Start: เลื่อนไปทางซ้ายเท่ากับครึ่งหนึ่งของความกว้างรวมของรูปภาพทั้งหมด 
+         * เพื่อให้ภาพที่ซ้ำกัน (Duplicated Images) อยู่ในตำแหน่งเริ่มต้น
+         */
+        from {
+            transform: translateX(-50%);
+        }
+        /* End: เลื่อนกลับมาที่ตำแหน่ง 0 เพื่อวนซ้ำ */
+        to {
+            transform: translateX(0);
+        }
+    }
+
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        margin: 0;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        color: #333;
+        position: relative; 
+        overflow: hidden; /* ซ่อนส่วนของรูปภาพที่เกินขอบจอ */
+        flex-direction: column; /* จัดเรียงองค์ประกอบในแนวตั้ง */
+        justify-content: space-between; /* กระจายเนื้อหาหลักและ footer */
+        min-height: 100vh; /* ทำให้ body มีความสูงอย่างน้อยเท่ากับความสูงของ viewport */
+        margin: 0;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        color: #333;
+        position: relative;
+        overflow: hidden;
+    }
+
+    /* องค์ประกอบใหม่สำหรับพื้นหลังรูปภาพ */
+    .background-images {
+        position: absolute; /* ให้ลอยอยู่ด้านหลังเนื้อหาหลัก */
+        top: 0;
+        left: 0;
+        width:200%; /* ต้องกว้างกว่า 100% เพื่อใส่ชุดรูปภาพซ้ำ */
+        height: 100%;
+        display: flex;
+        animation: scroll-bg-right 20s linear infinite; /* ปรับความเร็วให้ช้าลง */
+        z-index: -1; /* ส่งไปอยู่ด้านหลังเนื้อหาหลัก */
+    }
+
+    .background-images img {
+        width: 100%; /* แต่ละชุดรูปภาพต้องกินพื้นที่ 50% ของ track (หรือตามจำนวนชุดที่ซ้ำ) */
+        height: 100%;
+        object-fit: contain; 
+        image-rendering: auto;
+    }
+    
+    .container {
+        /* ... (CSS เดิม) ... */
+        z-index: 10; /* ให้เนื้อหาหลักอยู่ด้านหน้าเสมอ */
+    }
+
+        .container {
+            /* องค์ประกอบหลักที่บรรจุข้อความและปุ่ม */
+            text-align: center;
+            padding: 30px 60px;
+            margin-top: 200px;
+            /* สีพื้นหลังคอนเทนเนอร์ (ปรับให้สวยงามและโปร่งแสง) */
+            background-color: rgba(241, 112, 255, 0.9); 
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease-in-out;
+            z-index: 10; 
+        }
+
+        .container:hover {
+            transform: translateY(-5px);
+        }
+
+        h1 {
+            /* จัดรูปแบบข้อความ FERN DIARY */
+            font-size: 4.5em;
+            font-weight: 700;
+            color: #000000;
+            margin-bottom: 5px; /* ลดระยะห่างด้านล่าง H1 */
+            letter-spacing: 2px;
+            animation: fadeIn 1.5s ease-out;
+        }
+        
+        .IG {
+            /* จัดรูปแบบข้อความ IG */
+            color: #000000;
+            margin-bottom: 30px; 
+            letter-spacing: 1px;
+            animation: fadeIn 1.5s ease-out;
+        }
+        
+        .IG h4 {
+            /* จัดรูปแบบ H4 ภายใน IG */
+            font-weight: 400; /* ทำให้ตัวอักษรบางลง */
+            margin: 0;
+            font-size: 1.1em;
+        }
+
+        .start-button {
+            /* จัดรูปแบบปุ่ม "แสดงหน้า" */
+            padding: 15px 35px;
+            font-size: 1.2em;
+            font-weight: 600;
+            color: #fff;
+            background-color: #000000;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            outline: none;
+            transition: background-color 0.3s, transform 0.1s, box-shadow 0.3s;
+            animation: fadeIn 1.5s ease-out;
+        }
+
+        .start-button:hover {
+            background-color: #ff0000;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .start-button:active {
+            transform: scale(0.98);
+        }
+
+        /* แอนิเมชันสำหรับข้อความและปุ่ม */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        footer {
+            width: 100%;
+            background-color: rgba(51, 51, 51, 0.5); 
+            color: white;
+            padding: 5px;
+            text-align: center;
+            z-index: 10; 
+            font-weight: 500;
+        }
+
+        .footer-ig {
+            color: inherit; /* 👈 ทำให้สีลิงก์เป็นสีเดียวกับองค์ประกอบแม่ (footer, ซึ่งคือ white) */
+            text-decoration: none; /* 👈 ลบเส้นใต้ */
+            transition: color 0.3s; /* เพิ่ม transition เพื่อให้ดูสวยงามขึ้น */
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>FERN DIARY</h1>
+
+        <div class="IG">
+            <h4>IG : flnzbax</h4>
+        </div>
+
+        <button class="start-button" onclick="handleStartClick()">
+            แสดงหน้า
+        </button>
+    </div>
+
+    <div class="background-images">
+        <img src="images/flnzbax.png" alt="พื้นหลังเคลื่อนไหว 1">
+        <img src="images/flnzbax.png" alt="พื้นหลังเคลื่อนไหว 2">
+        <img src="images/flnzbax.png" alt="พื้นหลังเคลื่อนไหว 3">
+        <img src="images/flnzbax.png" alt="พื้นหลังเคลื่อนไหว 4">
+        <img src="images/flnzbax.png" alt="พื้นหลังเคลื่อนไหว 5">
+        <img src="images/flnzbax.png" alt="พื้นหลังเคลื่อนไหว 6">
+        <img src="images/flnzbax.png" alt="พื้นหลังเคลื่อนไหว 7">
+        <img src="images/flnzbax.png" alt="พื้นหลังเคลื่อนไหว 8">
+        <img src="images/flnzbax.png" alt="พื้นหลังเคลื่อนไหว 9">
+    </div>
+
+    <footer>
+            <p class="footer-title">This Page Make By Steven. <br>
+                <a class="footer-ig" href="https://www.instagram.com/stev3n_90/"> --> IG : Stev3n_90 <-- </a>
+            </p>
+    </footer>
+    
+    <script>
+        function handleStartClick() {
+            // ลิ้งค์ไปยังไฟล์ HTML ใหม่ที่คุณต้องการ
+            window.location.href = 'Fern.html';
+        }
+    </script>
+</body>
+</html>
