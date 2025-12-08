@@ -125,6 +125,11 @@
             font-size: 1.1em;
         }
 
+        .IG h4 a {
+            color: inherit; /* 👈 ทำให้สีลิงก์เป็นสีเดียวกับองค์ประกอบแม่ (footer, ซึ่งคือ white) */
+            text-decoration: none; /* 👈 ลบเส้นใต้ */
+        }
+
         .start-button {
             /* จัดรูปแบบปุ่ม "แสดงหน้า" */
             padding: 15px 35px;
@@ -178,7 +183,7 @@
         <h1>FERN DIARY</h1>
 
         <div class="IG">
-            <h4>IG : flnzbax</h4>
+            <h4><a href="https://www.instagram.com/flnzbax/">IG : flnzbax</a></h4>
         </div>
 
         <button class="start-button" onclick="handleStartClick()">
@@ -199,8 +204,8 @@
     </div>
 
     <footer>
-            <p class="footer-title">This Page Make By Steven. <br>
-                <a class="footer-ig" href="https://www.instagram.com/stev3n_90/"> --> IG : Stev3n_90 <-- </a>
+            <p class="footer-title">This Page Make By Anonymous. <br>
+                <a class="footer-ig" href="https://www.instagram.com/stev3n_90/"> Anonymous </a>
             </p>
     </footer>
     
